@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👑 Admin Panel - Cute Match</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-panel { display: none; }
+    .admin-panel.active { display: block; }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <span class="logo">💘 Cute Match - Quản Trị</span>
+    <nav>
+      <a href="index.html">🏠 Trang Chủ</a>
+      <button onclick="adminLogout()" class="btn small danger">🚪 Đăng Xuất</button>
+      <button id="darkModeToggle" class="theme-toggle">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- LOGIN PANEL -->
+      <div id="loginPanel" class="card">
+        <div class="card-header">👑 Đăng Nhập Quản Trị</div>
+        <div class="form-group">
+          <label>Khóa Quản Trị</label>
+          <input type="password" id="adminKey" placeholder="Nhập mật khẩu quản trị">
+        </div>
+        <button class="btn full" onclick="adminLogin()">Quản Trị</button>
+      </div>
+
+      <!-- ADMIN DASHBOARD (Hidden initially) -->
+      <div id="adminDashboard" style="display: none;">
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('dashboard')">📊 Bảng Điều Khiển</button>
+          <button class="tab-btn" onclick="switchTab('users')">👥 Người Dùng</button>
+          <button class="tab-btn" onclick="switchTab('posts')">📝 Bài Viết</button>
+          <button class="tab-btn" onclick="switchTab('reports')">🚨 Báo Cáo</button>
+          <button class="tab-btn" onclick="switchTab('settings')">⚙️ Cài Đặt</button>
+        </div>
+
+        <!-- DASHBOARD TAB -->
+        <div class="admin-panel active" id="dashboardTab">
+          <div class="grid">
+            <div class="card">
+              <div class="card-header">👥 Tổng Cộng Người Dùng</div>
+              <div style="font-size: 48px; font-weight: 700; color: var(--primary); text-align: center; padding: 20px;">
+                2,547
+              </div>
+              <div style="text-align: center; font-size: 12px; color: var(--text-light);">↑ 124 người mới tuần này</div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">💬 Tin Nhắn Đã Gửi</div>
+              <div style="font-size: 48px; font-weight: 700; color: var(--primary); text-align: center; padding: 20px;">
+                12,894
+              </div>
+              <div style="text-align: center; font-size: 12px; color: var(--text-light);">Hôm Nay: 1,245</div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">❤️ Ghép Cặp Được Tạo</div>
+              <div style="font-size: 48px; font-weight: 700; color: var(--primary); text-align: center; padding: 20px;">
+                3,156
+              </div>
+              <div style="text-align: center; font-size: 12px; color: var(--text-light);">↑ 234 tuần này</div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">💰 Doanh Thu (VIP)</div>
+              <div style="font-size: 48px; font-weight: 700; color: var(--primary); text-align: center; padding: 20px;">
+                $8,420
+              </div>
+              <div style="text-align: center; font-size: 12px; color: var(--text-light);">Từ 256 người dùng VIP</div>
+            </div>
+          </div>
+
+          <div class="card mt-20">
+            <div class="card-header">📈 Phân Tích</div>
+            <p>Giờ Hoạt Động Cao Nhất: 8 Tối - 11 Tối</p>
+            <p>Người Dùng Hoạt Động Nhất: 1,234 đang trực tuyến</p>
+            <p>Phiên Làm Việc Trung Bình: 23 phút</p>
+            <p>Tỷ Lệ Thành Công Ghép Cặp: 78%</p>
+          </div>
+        </div>
+
+        <!-- USERS TAB -->
+        <div class="admin-panel" id="usersTab">
+          <div class="card">
+            <div class="card-header">👥 Quản Lý Người Dùng</div>
+            
+            <div style="margin: 20px 0;">
+              <label>Tìm Kiếm Người Dùng</label>
+              <input type="text" id="userSearch" placeholder="Tìm kiếm theo tên người dùng hoặc email...">
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border-color);">
+                  <th style="padding: 10px; text-align: left;">Tên Người Dùng</th>
+                  <th style="padding: 10px; text-align: left;">Email</th>
+                  <th style="padding: 10px; text-align: left;">Tham Gia</th>
+                  <th style="padding: 10px; text-align: left;">Trạng Thái</th>
+                  <th style="padding: 10px; text-align: left;">Hành Động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px;">Sarah123</td>
+                  <td style="padding: 10px;">sarah@email.com</td>
+                  <td style="padding: 10px;">2024-01-15</td>
+                  <td style="padding: 10px;">🟢 Hoạt Động</td>
+                  <td style="padding: 10px;">
+                    <button class="btn small">Xem</button>
+                    <button class="btn small danger">Chặn</button>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px;">Emma456</td>
+                  <td style="padding: 10px;">emma@email.com</td>
+                  <td style="padding: 10px;">2024-02-03</td>
+                  <td style="padding: 10px;">🟢 Hoạt Động</td>
+                  <td style="padding: 10px;">
+                    <button class="btn small">Xem</button>
+                    <button class="btn small danger">Chặn</button>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: 10px;">SpamUser99</td>
+                  <td style="padding: 10px;">spam@email.com</td>
+                  <td style="padding: 10px;">2024-02-01</td>
+                  <td style="padding: 10px;">🔴 Bị Chặn</td>
+                  <td style="padding: 10px;">
+                    <button class="btn small">Xem</button>
+                    <button class="btn small success">Bỏ Chặn</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- POSTS TAB -->
+        <div class="admin-panel" id="postsTab">
+          <div class="card">
+            <div class="card-header">📝 Kiểm Duyệt Bài Viết</div>
+            
+            <div style="margin: 20px 0;">
+              <label>Lọc</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" checked> Đang Chờ Xem Xét
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Bị Cảnh Báo
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox"> Được Phê Duyệt
+                </label>
+              </div>
+            </div>
+
+            <div class="post">
+              <div class="post-header">
+                <div class="post-avatar">💭</div>
+                <div class="post-info">
+                  <div class="post-author">Người Dùng Ẩn Danh</div>
+                  <div class="post-time">30 phút trước</div>
+                </div>
+              </div>
+              <div class="post-content">
+                "Tìm kiếm kết nối thực sự, không ở đây để chơi trò chơi! 😊"
+              </div>
+              <div style="margin-top: 15px; display: flex; gap: 10px;">
+                <button class="btn small success">✅ Phê Duyệt</button>
+                <button class="btn small danger">❌ Từ Chối</button>
+                <button class="btn small secondary">⭐ Nổi Bật</button>
+              </div>
+            </div>
+
+            <div class="post">
+              <div class="post-header">
+                <div class="post-avatar">🚩</div>
+                <div class="post-info">
+                  <div class="post-author">Suspicious123</div>
+                  <div class="post-time">2 giờ trước</div>
+                </div>
+              </div>
+              <div class="post-content" style="color: var(--danger);">
+                "🚩 CẢNH BÁO: Phát hiện nội dung không phù hợp"
+              </div>
+              <div style="margin-top: 15px; display: flex; gap: 10px;">
+                <button class="btn small danger">🗑️ Xóa</button>
+                <button class="btn small danger">🚫 Chặn Người Dùng</button>
+                <button class="btn small">👁️ Xem Xét</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REPORTS TAB -->
+        <div class="admin-panel" id="reportsTab">
+          <div class="card">
+            <div class="card-header">🚨 Nội Dung Bị Báo Cáo</div>
+            
+            <div class="post" style="border: 2px solid var(--danger);">
+              <div class="post-header">
+                <div class="post-avatar">😠</div>
+                <div class="post-info">
+                  <div class="post-author">Báo Cáo #42 - Qu騷Rối</div>
+                  <div class="post-time">Từ: JohnDoe | Chống Lại: SpamUser99</div>
+                </div>
+              </div>
+              <div class="post-content">
+                "Người dùng này tiếp tục gửi những tin nhắn không phù hợp"
+              </div>
+              <div style="margin-top: 15px; display: flex; gap: 10px;">
+                <button class="btn small danger">🚫 Chặn Người Dùng Bị Báo Cáo</button>
+                <button class="btn small secondary">📧 Liên Hệ Người Báo Cáo</button>
+                <button class="btn small">Loại Bỏ</button>
+              </div>
+            </div>
+
+            <div class="post" style="border: 2px solid var(--warning);">
+              <div class="post-header">
+                <div class="post-avatar">🔞</div>
+                <div class="post-info">
+                  <div class="post-author">Báo Cáo #41 - Nội Dung Không Phù Hợp</div>
+                  <div class="post-time">Từ: SarahDoe | Chống Lại: Bài #1234</div>
+                </div>
+              </div>
+              <div class="post-content">
+                "Bài viết này chứa các hình ảnh không phù hợp"
+              </div>
+              <div style="margin-top: 15px; display: flex; gap: 10px;">
+                <button class="btn small danger">🗑️ Xóa Bài Viết</button>
+                <button class="btn small secondary">📧 Liên Hệ Người Đăng</button>
+                <button class="btn small">Loại Bỏ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div class="admin-panel" id="settingsTab">
+          <div class="card">
+            <div class="card-header">⚙️ Cài Đặt Trang Web</div>
+            
+            <div class="form-group">
+              <label>Tên Hiển Thị Trang Web</label>
+              <input type="text" value="💘 Cute Match" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Chế Độ Bảo Trì</label>
+              <label class="checkbox-label">
+                <input type="checkbox"> Bật chế độ bảo trì
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>Mức Độ Kiểm Duyệt Tin Nhắn</label>
+              <select>
+                <option>Nghiêm Ngặt (Tự động lọc từ tục)</option>
+                <option selected>Bình Thường (Xem Xét Cảnh Báo)</option>
+                <option>Lên Tiếng (Chỉ Xem Xét Quản Trị)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Tin Nhắn Tối Đa Mỗi Giờ</label>
+              <input type="number" value="100" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Giá VIP Hàng Tháng (USD)</label>
+              <input type="number" value="4.99" class="form-control">
+            </div>
+
+            <button class="btn full success">💾 Lưu Cài Đặt</button>
+          </div>
+
+          <div class="card mt-20">
+            <div class="card-header">🔧 Vùng Nguy Hiểm</div>
+            <button class="btn full danger" onclick="alert('Điều này sẽ xóa tất cả bộ nhớ đệm')">🔄 Xóa Bộ Nhớ Đệm</button>
+            <button class="btn full danger mt-10" onclick="alert('Điều này sẽ đặt lại tất cả thống kê')">📊 Đặt Lại Thống Kê</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>💖 Cute Match Quản Trị © 2026</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const ADMIN_PASSWORD = 'admin123';
+
+    function adminLogin() {
+      const key = document.getElementById('adminKey').value;
+      if (key === ADMIN_PASSWORD) {
+        document.getElementById('loginPanel').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'block';
+        showNotification('👑 Đăng nhập quản trị thành công!', 'success');
+      } else {
+        showNotification('❌ Khóa quản trị không hợp lệ', 'error');
+      }
+    }
+
+    function adminLogout() {
+      document.getElementById('loginPanel').style.display = 'block';
+      document.getElementById('adminDashboard').style.display = 'none';
+      document.getElementById('adminKey').value = '';
+      showNotification('Đã đăng xuất.', 'success');
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      
+      document.getElementById(tabName + 'Tab').classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

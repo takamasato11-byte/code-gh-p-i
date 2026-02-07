@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>🎮 Trò Chơi & Câu Hỏi - Cute Match</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+  <span class="logo">💘 Cute Match</span>
+  <nav>
+    <a href="index.html">🏠 Trang Chủ</a>
+    <a href="account.html">👤 Tài Khoản</a>
+    <a href="match.html">🔥 Hẹn Hò</a>
+    <a href="feed.html">📝 Bảng Tin</a>
+    <a href="chat.html">💬 Trò Chuyện</a>
+    <button id="darkModeToggle">🌙</button>
+  </nav>
+</header>
+
+<main class="container">
+  <h1 class="text-center">🎮 Trò Chơi & Câu Hỏi</h1>
+
+  <div class="feature-grid">
+    <div class="feature-box" onclick="startQuiz('compatibility')">
+      <div class="feature-icon">🧩</div>
+      <h3>Câu Hỏi Tương Thích</h3>
+      <p>Kiểm tra độ hợp nhau</p>
+    </div>
+
+    <div class="feature-box" onclick="startQuiz('lovelanguage')">
+      <div class="feature-icon">💕</div>
+      <h3>Ngôn Ngữ Tình Yêu</h3>
+      <p>Khám phá cách bạn yêu</p>
+    </div>
+  </div>
+
+  <div id="gameContainer" class="card" style="display:none;margin-top:30px">
+    <h2 id="gameTitle"></h2>
+
+    <div id="questionContainer">
+      <div class="progress-bar">
+        <div class="progress-fill" id="quizProgress"></div>
+      </div>
+
+      <p>Câu <span id="currentQuestion"></span> / <span id="totalQuestions"></span></p>
+
+      <h3 id="questionText"></h3>
+      <div id="answersContainer"></div>
+
+      <button class="btn full" id="nextBtn" onclick="nextQuestion()">Câu tiếp →</button>
+    </div>
+
+    <div id="resultsContainer" style="display:none;text-align:center">
+      <h2 id="resultScore"></h2>
+      <h3 id="resultTitle"></h3>
+      <p id="resultDescription"></p>
+
+      <button class="btn" onclick="playAgain()">🔄 Chơi lại</button>
+      <button class="btn outline" onclick="closeGame()">⬅ Quay lại</button>
+    </div>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script>
+const quizzes = {
+  compatibility: {
+    title: '🧩 Câu Hỏi Tương Thích',
+    icon: '🧩',
+    questions: [
+      {
+        text: 'Cuộc hẹn lý tưởng của bạn?',
+        answers: ['🍽️ Bữa tối sang trọng', '🏠 Hẹn tại nhà ấm cúng', '🏔️ Phiêu lưu ngoài trời', '🎬 Xem phim tại nhà'],
+        points: [1, 2, 3, 4]
+      },
+      {
+        text: 'Cách bạn giải quyết mâu thuẫn?',
+        answers: ['💬 Nói chuyện mở tâm', '⏳ Đợi tinh tạnh lại', '🤝 Tìm thỏa hiệp', '📝 Viết lại để suy ngẫm'],
+        points: [3, 2, 4, 1]
+      },
+      {
+        text: 'Bạn mong muốn điều gì nhất trong mối quan hệ?',
+        answers: ['😊 Sự vui vẻ và cười', '💪 Sự hỗ trợ và khích lệ', '❤️ Tình cảm sâu sắc', '🎢 Những điều mới lạ'],
+        points: [2, 3, 4, 1]
+      }
+    ]
+  },
+
+  lovelanguage: {
+    title: '💕 Ngôn Ngữ Tình Yêu',
+    icon: '💕',
+    questions: [
+      {
+        text: 'Bạn cảm thấy được yêu nhất khi?',
+        answers: [
+          '💬 Nghe lời nịnh nọc và lời tình tứ',
+          '🤝 Được giúp đỡ và hỗ trợ',
+          '🎁 Nhận quà tặng bất ngờ',
+          '🤗 Được ôm hôn và yêu chiều'
+        ],
+        points: [1, 2, 3, 4]
+      },
+      {
+        text: 'Bạn thích thể hiện tình yêu như thế nào?',
+        answers: [
+          '💬 Nói những lời ngọt ngào',
+          '🤝 Giúp đỡ với công việc',
+          '🎁 Mua quà tặng',
+          '👋 Chạm tay và ôm'
+        ],
+        points: [1, 2, 3, 4]
+      },
+      {
+        text: 'Thời gian chất lượng với bạn là?',
+        answers: [
+          '💬 Nói chuyện sâu sắc',
+          '🧹 Làm việc nhà cùng nhau',
+          '🎬 Cùng xem phim hoặc chơi',
+          '🤗 Ngồi cạnh nhau gần gũi'
+        ],
+        points: [1, 2, 3, 4]
+      }
+    ]
+  }
+};
+
+let currentQuizKey = '';
+let currentQuiz;
+let currentQuestion = 0;
+let score = 0;
+let answers = [];
+
+function startQuiz(key) {
+  // Check if logged in
+  const user = AuthManager.getCurrentUser();
+  if (!user) {
+    showNotification('Vui lòng đăng nhập để chơi trò chơi', 'error');
+    return;
+  }
+  
+  currentQuizKey = key;
+  currentQuiz = quizzes[key];
+  currentQuestion = 0;
+  score = 0;
+  answers = [];
+
+  document.getElementById('gameTitle').textContent = currentQuiz.title;
+  document.getElementById('totalQuestions').textContent = currentQuiz.questions.length;
+  document.getElementById('gameContainer').style.display = 'block';
+  document.getElementById('resultsContainer').style.display = 'none';
+  document.getElementById('questionContainer').style.display = 'block';
+
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = currentQuiz.questions[currentQuestion];
+  document.getElementById('questionText').textContent = q.text;
+  document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+
+  document.getElementById('answersContainer').innerHTML =
+    q.answers.map((a,i)=>`
+      <label>
+        <input type="radio" name="answer" value="${i}" onchange="selectAnswer(${i})">
+        ${a}
+      </label><br>
+    `).join('');
+
+  document.getElementById('quizProgress').style.width =
+    ((currentQuestion+1)/currentQuiz.questions.length*100)+'%';
+}
+
+function selectAnswer(answerIndex) {
+  const selected = document.querySelector('input[name="answer"]:checked');
+  if (selected) {
+    // Answer selected, enable next button (or just let user click)
+    console.log('Answer selected:', answerIndex);
+  }
+}
+
+function nextQuestion() {
+  const selected = document.querySelector('input[name="answer"]:checked');
+  if(!selected) {
+    showNotification('Vui lòng chọn một câu trả lời!', 'error');
+    return;
+  }
+
+  const answerIndex = parseInt(selected.value);
+  const points = currentQuiz.questions[currentQuestion].points[answerIndex];
+  score += points;
+  answers.push(answerIndex);
+  
+  currentQuestion++;
+
+  if(currentQuestion < currentQuiz.questions.length) {
+    showQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  document.getElementById('questionContainer').style.display = 'none';
+  document.getElementById('resultsContainer').style.display = 'block';
+
+  const maxScore = currentQuiz.questions.reduce((sum, q) => sum + Math.max(...q.points), 0);
+  const percent = Math.round(score / maxScore * 100);
+
+  document.getElementById('resultScore').textContent = percent + '%';
+
+  let resultTitle, resultDescription, emoji;
+  
+  if(percent >= 80){
+    resultTitle = '🔥 Rất Hợp!';
+    resultDescription = 'Hai bạn cực kỳ tương thích! Điều này rất tốt!';
+    emoji = '🔥';
+  } else if(percent >= 60){
+    resultTitle = '💕 Khá Hợp!';
+    resultDescription = 'Có tiềm năng phát triển tốt đẹp!';
+    emoji = '💕';
+  } else {
+    resultTitle = '⭐ Khác Biệt!';
+    resultDescription = 'Một trải nghiệm thú vị và độc đáo!';
+    emoji = '⭐';
+  }
+
+  document.getElementById('resultTitle').textContent = resultTitle;
+  document.getElementById('resultDescription').textContent = resultDescription;
+
+  // Save score
+  const results = JSON.parse(localStorage.getItem('gameResults') || '{}');
+  if (!results[currentQuizKey]) results[currentQuizKey] = [];
+  results[currentQuizKey].push({
+    score: percent,
+    date: new Date().getTime()
+  });
+  localStorage.setItem('gameResults', JSON.stringify(results));
+
+  showNotification(`${emoji} Kết quả: ${percent}%! ${resultDescription}`, 'success');
+}
+
+function playAgain() {
+  startQuiz(currentQuizKey);
+}
+
+function shareResults() {
+  const percent = document.getElementById('resultScore').textContent;
+  const text = `Tôi vừa đạt ${percent} trong trò chơi ${currentQuiz.title} trên Cute Match! 🎮❤️`;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: 'Cute Match Game Results',
+      text: text
+    }).catch(err => console.log('Error sharing:', err));
+  } else {
+    showNotification('Kết quả đã được chia sẻ! 🎉', 'success');
+  }
+}
+
+function closeGame() {
+  document.getElementById('gameContainer').style.display = 'none';
+  document.getElementById('resultsContainer').style.display = 'none';
+}
+</script>
+
+</body>
+</html>

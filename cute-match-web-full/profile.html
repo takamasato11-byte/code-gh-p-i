@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👤 Hồ Sơ Người Dùng - Cute Match</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <span class="logo">💘 Cute Match</span>
+    <nav>
+      <a href="index.html">🏠 Trang Chủ</a>
+      <a href="account.html">👤 Tài Khoản</a>
+      <a href="match.html">🔥 Hẹn Hò</a>
+      <a href="feed.html">📝 Bảng Tin</a>
+      <a href="chat.html">💬 Trò Chuyện</a>
+      <button id="darkModeToggle" class="theme-toggle">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container" style="max-width: 800px;">
+      <!-- PROFILE HEADER -->
+      <div class="card">
+        <div style="display: grid; grid-template-columns: 150px 1fr; gap: 30px; align-items: start;">
+          <div style="text-align: center;">
+            <div class="avatar" style="width: 150px; height: 150px; font-size: 70px; margin: 0 auto;">👩</div>
+            <button class="btn small full mt-20">📷 Đổi Ảnh</button>
+          </div>
+          <div>
+            <h1 style="margin: 0; margin-bottom: 10px;">Sarah Chen 👑</h1>
+            <div style="font-size: 16px; color: var(--text-light); margin-bottom: 15px;">
+              <p>🎂 24 tuổi | 👫 Nữ | 📍 TP. Hồ Chí Minh</p>
+              <p>🟢 Trực tuyến | Tham gia: Tháng 1 năm 2024</p>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <div style="display: flex; gap: 10px;">
+                <button class="btn small">❤️ Thích</button>
+                <button class="btn small">💬 Tin Nhắn</button>
+                <button class="btn small outline">👁️ Xem Đầy Đủ</button>
+              </div>
+            </div>
+            <div style="background: rgba(255, 77, 136, 0.1); padding: 10px; border-radius: 10px;">
+              <span style="color: var(--primary); font-weight: 700;">👑 Thành Viên VIP</span> - Tính năng cao cấp được mở khóa ✨
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT SECTION -->
+      <div class="card mt-20">
+        <div class="card-header">📝 Về Tôi</div>
+        <p>
+          Xin chào! Tôi là Sarah, 24 tuổi từ TP. Hồ Chí Minh. Tôi yêu du lịch đến những nơi mới, 
+          khám phá các nền văn hóa khác nhau và thử các món ăn địa phương. Tôi cũng là một fan hâm mộ lớn của âm nhạc trực tiếp 
+          và các ban nhạc indie. Tìm kiếm những kết nối thật sự với ai đó đánh giá cao phiêu lưu 
+          và những cuộc trò chuyện có ý nghĩa! 💕
+        </p>
+      </div>
+
+      <!-- INTERESTS -->
+      <div class="card mt-20">
+        <div class="card-header">💕 Sở Thích</div>
+        <div class="user-interests">
+          <span class="tag pink">✈️ Travel</span>
+          <span class="tag purple">🎵 Music</span>
+          <span class="tag blue">☕ Coffee</span>
+          <span class="tag green">📚 Reading</span>
+          <span class="tag pink">🎬 Movies</span>
+          <span class="tag purple">🍕 Foodie</span>
+          <span class="tag blue">🏔️ Hiking</span>
+          <span class="tag green">🎨 Art</span>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="card mt-20">
+        <div class="card-header">📊 Thống Kê Hồ Sơ</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+          <div style="text-align: center;">
+            <div style="font-size: 32px; font-weight: 700; color: var(--primary);">245</div>
+            <div style="color: var(--text-light); font-size: 12px;">Lượt Xem Hồ Sơ</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 32px; font-weight: 700; color: var(--primary);">89</div>
+            <div style="color: var(--text-light); font-size: 12px;">Lượt Thích Nhân</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 32px; font-weight: 700; color: var(--primary);">12</div>
+            <div style="color: var(--text-light); font-size: 12px;">Trò Chuyện Đang Hoạt Động</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 32px; font-weight: 700; color: var(--primary);">34</div>
+            <div style="color: var(--text-light); font-size: 12px;">Người Theo Dõi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTOS -->
+      <div class="card mt-20">
+        <div class="card-header">📸 Thư Viện Ảnh</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+          <div style="background: linear-gradient(135deg, #ffd6e8, #ff7aa8); height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 60px;">
+            📸
+          </div>
+          <div style="background: linear-gradient(135deg, #e0f7ff, #74b9ff); height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 60px;">
+            🌄
+          </div>
+          <div style="background: linear-gradient(135deg, #e0d4f1, #c9a5ed); height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 60px;">
+            ✈️
+          </div>
+          <div style="background: linear-gradient(135deg, #fff5e1, #ffd93d); height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 60px; cursor: pointer; border: 2px dashed var(--border-color);">
+            ➕
+          </div>
+        </div>
+      </div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="card mt-20">
+        <div class="card-header">⏰ Hoạt Động Gần Đây</div>
+        <div style="font-size: 12px; color: var(--text-light);">
+          <div style="padding: 10px 0; border-bottom: 1px solid var(--border-color);">
+            <strong>Hôm nay</strong> - Xem hồ sơ của bạn
+          </div>
+          <div style="padding: 10px 0; border-bottom: 1px solid var(--border-color);">
+            <strong>Hôm qua</strong> - Bắt đầu cuộc trò chuyện
+          </div>
+          <div style="padding: 10px 0; border-bottom: 1px solid var(--border-color);">
+            <strong>2 ngày trước</strong> - Đăng lên bảng tin
+          </div>
+          <div style="padding: 10px 0;">
+            <strong>3 ngày trước</strong> - Cập nhật ảnh hồ sơ
+          </div>
+        </div>
+      </div>
+
+      <!-- EDIT PROFILE BUTTON -->
+      <div class="card mt-20" style="text-align: center;">
+        <button class="btn full success">✏️ Chỉnh Sửa Hồ Sơ</button>
+        <button class="btn full secondary mt-10">🔐 Đổi Mật Khẩu</button>
+        <button class="btn full danger mt-10">🚪 Đăng Xuất</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>💖 Cute Match © 2026 | <a href="#">Quyền Riêng Tư</a> | <a href="#">Điều Khoản</a> | <a href="#">Liên Hệ</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

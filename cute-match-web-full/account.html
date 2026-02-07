@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👤 Tài Khoản - Cute Match</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <span class="logo">💘 Cute Match</span>
+    <nav>
+      <a href="index.html">🏠 Trang Chủ</a>
+      <a href="account.html">👤 Tài Khoản</a>
+      <a href="match.html">🔥 Hẹn Hò</a>
+      <a href="feed.html">📝 Bảng Tin</a>
+      <a href="chat.html">💬 Trò Chuyện</a>
+      <button id="darkModeToggle" class="theme-toggle">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="login">Đăng Nhập</button>
+        <button class="tab-btn" data-tab="signup">Tạo Tài Khoản</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="login" class="tab-content active">
+        <div class="card">
+          <div class="card-header">👤 Đăng Nhập</div>
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="email">📧 Email hoặc Tên Người Dùng</label>
+              <input type="text" id="email" placeholder="Nhập email hoặc tên người dùng của bạn" required>
+            </div>
+            <div class="form-group">
+              <label for="password">🔐 Mật Khẩu</label>
+              <input type="password" id="password" placeholder="Nhập mật khẩu của bạn" required>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox"> Nhớ tôi
+              </label>
+            </div>
+            <button type="submit" class="btn full">Đăng Nhập</button>
+            <p class="text-center" style="margin-top: 15px;">
+              <a href="#">Quên Mật Khẩu?</a>
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signup" class="tab-content">
+        <div class="card">
+          <div class="card-header">✨ Tạo Tài Khoản Của Bạn</div>
+          <form id="signupForm">
+            <div class="form-group">
+              <label for="username">👤 Tên Người Dùng</label>
+              <input type="text" id="username" placeholder="Chọn một tên người dùng độc đáo" required>
+            </div>
+            <div class="form-group">
+              <label for="signupEmail">📧 Email</label>
+              <input type="email" id="signupEmail" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="displayName">💬 Tên Hiển Thị</label>
+              <input type="text" id="displayName" placeholder="Chúng tôi nên gọi bạn là gì?" required>
+            </div>
+            <div class="form-group">
+              <label for="age">🎂 Tuổi</label>
+              <input type="number" id="age" min="18" max="100" placeholder="18+" required>
+            </div>
+            <div class="form-group">
+              <label for="gender">👫 Giới Tính</label>
+              <select id="gender" required>
+                <option value="">Chọn giới tính</option>
+                <option value="female">👩 Nữ</option>
+                <option value="male">👨 Nam</option>
+                <option value="non-binary">✨ Không nhị phân</option>
+                <option value="prefer-not">🤐 Không muốn nói</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="city">📍 Thành Phố/Vị Trí</label>
+              <input type="text" id="city" placeholder="Bạn đang ở đâu?" required>
+            </div>
+            <div class="form-group">
+              <label>😊 Sở Thích (Chọn nhiều)</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" value="travel"> 🌍 Du Lịch
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="music"> 🎵 Âm Nhạc
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="sports"> ⚽ Thể Thao
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="cooking"> 🍳 Nấu Ăn
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="reading"> 📚 Đọc Sách
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="movies"> 🎬 Phim Ảnh
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="gaming"> 🎮 Chơi Game
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="art"> 🎨 Nghệ Thuật
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="tech"> 💻 Công Nghệ
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" value="fitness"> 💪 Thể Dục
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bio">📝 Kể Về Bản Thân Bạn</label>
+              <textarea id="bio" placeholder="Điều gì làm bạn độc đáo?" maxlength="500"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="password2">🔐 Mật Khẩu</label>
+              <input type="password" id="password2" placeholder="Tạo một mật khẩu mạnh" required>
+            </div>
+            <div class="form-group">
+              <label for="password3">🔐 Xác Nhận Mật Khẩu</label>
+              <input type="password" id="password3" placeholder="Xác nhận mật khẩu của bạn" required>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" required> Tôi đồng ý với Điều Khoản & Điều Kiện
+              </label>
+            </div>
+            <button type="submit" class="btn full success">Tạo Tài Khoản</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- CURRENT PROFILE (if logged in) -->
+      <div class="card" style="margin-top: 30px;">
+        <div class="card-header">👤 Hồ Sơ Của Bạn</div>
+        <div class="grid">
+          <div class="text-center">
+            <div class="avatar" style="width: 150px; height: 150px; font-size: 80px; margin: 20px auto;">👩</div>
+            <button class="btn small">Thay Đổi Avatar</button>
+          </div>
+          <div>
+            <div class="card-section">
+              <strong>👤 Tên Người Dùng:</strong> SampleUser
+            </div>
+            <div class="card-section">
+              <strong>💬 Tên Hiển Thị:</strong> Sarah Chen
+            </div>
+            <div class="card-section">
+              <strong>🎂 Tuổi:</strong> 24
+            </div>
+            <div class="card-section">
+              <strong>👫 Giới Tính:</strong> Nữ
+            </div>
+            <div class="card-section">
+              <strong>📍 Vị Trí:</strong> TP. Hồ Chí Minh
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRIVACY SETTINGS -->
+      <div class="card">
+        <div class="card-header">🛡️ Cài Đặt Quyền Riêng Tư</div>
+        <div class="card-section">
+          <label class="checkbox-label">
+            <input type="checkbox"> 🙈 Ẩn tuổi của tôi khỏi hồ sơ
+          </label>
+        </div>
+        <div class="card-section">
+          <label class="checkbox-label">
+            <input type="checkbox"> 📸 Ẩn ảnh của tôi cho đến khi chúng ta hẹn hò
+          </label>
+        </div>
+        <div class="card-section">
+          <label class="checkbox-label">
+            <input type="checkbox"> 📍 Ẩn vị trí chính xác của tôi
+          </label>
+        </div>
+        <div class="card-section">
+          <label class="checkbox-label">
+            <input type="checkbox"> 👻 Chế độ ẩn danh (tên người dùng ngẫu nhiên)
+          </label>
+        </div>
+        <button class="btn mt-20">Lưu Cài Đặt Quyền Riêng Tư</button>
+      </div>
+
+      <!-- TODAY'S MOOD -->
+      <div class="card">
+        <div class="card-header">😊 Tâm Trạng Hôm Nay</div>
+        <p>Bạn cảm thấy thế nào hôm nay?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="radio" name="mood"> 😊 Vui Vẻ
+          </label>
+          <label class="checkbox-label">
+            <input type="radio" name="mood"> 😢 Buồn
+          </label>
+          <label class="checkbox-label">
+            <input type="radio" name="mood"> 😎 Tuyệt Vời
+          </label>
+          <label class="checkbox-label">
+            <input type="radio" name="mood"> 🥰 Yêu Thích
+          </label>
+          <label class="checkbox-label">
+            <input type="radio" name="mood"> 😴 Mệt Mỏi
+          </label>
+        </div>
+        <button class="btn mt-20">Cập Nhật Tâm Trạng</button>
+      </div>
+
+      <!-- ACCOUNT ACTIONS -->
+      <div class="card">
+        <div class="card-header">⚙️ Quản Lý Tài Khoản</div>
+        <button class="btn full mb-10">✏️ Chỉnh Sửa Hồ Sơ</button>
+        <button class="btn full secondary mb-10">🔐 Thay Đổi Mật Khẩu</button>
+        <button class="btn full danger">🚪 Đăng Xuất</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>💖 Cute Match © 2026 | <a href="#">Quyền Riêng Tư</a> | <a href="#">Điều Khoản</a> | <a href="#">Liên Hệ</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Form handlers
+    document.getElementById('loginForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Login - Demo Mode. In production, this would authenticate with a backend.');
+      window.location.href = 'match.html';
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const pwd1 = document.getElementById('password2').value;
+      const pwd2 = document.getElementById('password3').value;
+      
+      if (pwd1 !== pwd2) {
+        alert('Passwords do not match!');
+        return;
+      }
+      
+      alert('Account created! Welcome to Cute Match! 🎉');
+      window.location.href = 'match.html';
+    });
+  </script>
+</body>
+</html>

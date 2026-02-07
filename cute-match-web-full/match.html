@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 Hẹn Hò - Cute Match</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <span class="logo">💘 Cute Match</span>
+    <nav>
+      <a href="index.html">🏠 Trang Chủ</a>
+      <a href="account.html">👤 Tài Khoản</a>
+      <a href="match.html">🔥 Hẹn Hò</a>
+      <a href="feed.html">📝 Bảng Tin</a>
+      <a href="chat.html">💬 Trò Chuyện</a>
+      <button id="darkModeToggle" class="theme-toggle">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- MATCHING OPTIONS -->
+      <div class="section">
+        <h2 class="section-title">🎯 Chọn Kiểu Hẹn Hò Của Bạn</h2>
+        <div class="feature-grid">
+          <div class="feature-box" onclick="startMatch('interests')">
+            <div class="feature-icon">❤️</div>
+            <h3 class="feature-title">Hẹn Hò Theo Sở Thích</h3>
+            <p class="feature-desc">Tìm những người có sở thích giống nhau</p>
+          </div>
+          <div class="feature-box" onclick="startMatch('location')">
+            <div class="feature-icon">📍</div>
+            <h3 class="feature-title">Hẹn Hò Theo Vị Trí</h3>
+            <p class="feature-desc">Gặp những người gần bạn</p>
+          </div>
+          <div class="feature-box" onclick="startMatch('age')">
+            <div class="feature-icon">🎂</div>
+            <h3 class="feature-title">Hẹn Hò Theo Tuổi</h3>
+            <p class="feature-desc">Chọn khoảng tuổi của bạn</p>
+          </div>
+          <div class="feature-box" onclick="startMatch('anonymous')">
+            <div class="feature-icon">👻</div>
+            <h3 class="feature-title">Hẹn Hò Ẩn Danh</h3>
+            <p class="feature-desc">Hẹn hò bí ẩn!</p>
+          </div>
+          <div class="feature-box" onclick="startMatch('random')">
+            <div class="feature-icon">🎲</div>
+            <h3 class="feature-title">Hẹn Hò 5 Phút</h3>
+            <p class="feature-desc">Hẹn hò ngẫu nhiên nhanh chóng</p>
+          </div>
+          <div class="feature-box" onclick="startMatch('voice')">
+            <div class="feature-icon">🎧</div>
+            <h3 class="feature-title">Hẹn Hò Bằng Giọng Nói</h3>
+            <p class="feature-desc">Chia sẻ giới thiệu giọng nói 10 giây</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CURRENT MATCH DISPLAY -->
+      <div id="matchContainer" class="card" style="display: none;">
+        <div class="card-header" id="matchModeTitle">🔥 Tìm Thấy Người Hẹn!</div>
+        
+        <div class="text-center">
+          <div class="user-card" style="margin: 20px auto;">
+            <div class="avatar" id="matchAvatar">👩</div>
+            <div class="user-name" id="matchName">Sarah, 24</div>
+            <div class="user-meta" id="matchMeta">📍 TP. Hồ Chí Minh</div>
+            <div class="match-meter">
+              <div class="match-percentage" id="compatibilityScore">87%</div>
+              <div class="progress-bar">
+                <div class="progress-fill" id="compatProgress" style="width: 87%;"></div>
+              </div>
+              <p id="compatibilityReason">Người hẹn tuyệt vời dựa trên sở thích chung!</p>
+            </div>
+            <div class="user-interests" id="matchInterests">
+              <span class="tag pink">Du Lịch</span>
+              <span class="tag purple">Cà Phê</span>
+              <span class="tag blue">Âm Nhạc</span>
+            </div>
+            <p id="matchBio">"Yêu khám phá những nơi mới và gặp gỡ con người mới!"</p>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <strong>📊 Phân Tích Độ Tương Thích:</strong>
+          <div style="margin-top: 15px;">
+            <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+              <span>Sở Thích Phù Hợp:</span>
+              <span>85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+              <span>Vị Trí Phù Hợp:</span>
+              <span>100%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 100%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+              <span>Khoảng Tuổi:</span>
+              <span>90%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-20">
+          <button class="btn" onclick="likeMatch()">❤️ Thích & Trò Chuyện</button>
+          <button class="btn secondary" onclick="skipMatch()">👻 Bỏ Qua</button>
+          <button class="btn outline mt-10" onclick="viewProfile()">👁️ Xem Hồ Sơ Đầy Đủ</button>
+        </div>
+      </div>
+
+      <!-- FILTERS PANEL -->
+      <div id="filtersContainer" class="card" style="display: none;">
+        <div class="card-header">🎯 Đặt Tùy Chọn Của Bạn</div>
+        
+        <div class="card-section">
+          <label>🎂 Khoảng Tuổi</label>
+          <div style="margin: 15px 0;">
+            <input type="range" id="ageMin" min="18" max="50" value="20"> 
+            <span id="ageMinDisplay">20</span> đến 
+            <input type="range" id="ageMax" min="18" max="80" value="30"> 
+            <span id="ageMaxDisplay">30</span> tuổi
+          </div>
+        </div>
+
+        <div class="card-section">
+          <label>❤️ Tôi Đang Tìm Kiếm</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="lookingfor" value="male"> 👨 Đàn Ông
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="lookingfor" value="female"> 👩 Phụ Nữ
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="lookingfor" value="both"> 👫 Cả Hai
+            </label>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <label>📍 Khoảng Cách</label>
+          <input type="range" id="distance" min="1" max="100" value="25">
+          <p>Bán kính <span id="distanceDisplay">25</span> km</p>
+        </div>
+
+        <div class="card-section">
+          <label>😊 Sở Thích Chung</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" value="travel"> 🌍 Du Lịch
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="music"> 🎵 Âm Nhạc
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="food"> 🍕 Ẩm Thực
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="movies"> 🎬 Phim Ảnh
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="fitness"> 💪 Thể Dục
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="art"> 🎨 Nghệ Thuật
+            </label>
+          </div>
+        </div>
+
+        <button class="btn full mt-20" onclick="applyFilters()">Áp Dụng Bộ Lọc & Bắt Đầu Hẹn Hò!</button>
+      </div>
+
+      <!-- RECENT MATCHES -->
+      <div class="section">
+        <h2 class="section-title">💕 Những Người Hẹn Gần Đây</h2>
+        <div class="grid">
+          <div class="user-card">
+            <div class="avatar">👸</div>
+            <div class="user-name">Sarah, 24</div>
+            <div class="user-meta">🟢 Trực Tuyến</div>
+            <div style="margin: 10px 0; font-size: 28px;">❤️ Đã Ghép Cặp!</div>
+            <button class="btn small full">Mở Trò Chuyện</button>
+          </div>
+          <div class="user-card">
+            <div class="avatar">💃</div>
+            <div class="user-name">Emma, 23</div>
+            <div class="user-meta">⏰ 30 phút trước</div>
+            <div style="margin: 10px 0; font-size: 28px;">❤️ Đã Ghép Cặp!</div>
+            <button class="btn small full">Mở Trò Chuyện</button>
+          </div>
+          <div class="user-card">
+            <div class="avatar">👯</div>
+            <div class="user-name">Lisa, 25</div>
+            <div class="user-meta">💬 Thích bạn</div>
+            <div style="margin: 10px 0; font-size: 28px;">💓 Thích Lại?</div>
+            <button class="btn small full success">Thích Lại</button>
+          </div>
+          <div class="user-card">
+            <div class="avatar">🧑‍🦰</div>
+            <div class="user-name">Jessica, 26</div>
+            <div class="user-meta">🟢 Trực Tuyến</div>
+            <div style="margin: 10px 0; font-size: 28px;">👀 Xem Hồ Sơ</div>
+            <button class="btn small full">Xem</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRUSH RADAR FEATURE -->
+      <div class="card">
+        <div class="card-header">👀 Radar Crush - Những Thích Bí Mật</div>
+        <p>Thích bí mật ai đó! Nếu họ thích bạn lại, bạn sẽ được ghép cặp ngay lập tức và trò chuyện mở ra! 💥</p>
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="feature-icon">👀</div>
+            <h3 class="feature-title">10 Thích Bí Mật</h3>
+            <p class="feature-desc">mỗi ngày miễn phí</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">💥</div>
+            <h3 class="feature-title">Ghép Cặp Tức Thì</h3>
+            <p class="feature-desc">Khi cả hai thích nhau</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">🔔</div>
+            <h3 class="feature-title">Thông Báo</h3>
+            <p class="feature-desc">Nhận cảnh báo về crush mới</p>
+          </div>
+        </div>
+        <button class="btn full mt-20">💕 Bắt Đầu Sử Dụng Radar Crush</button>
+      </div>
+
+      <!-- QUICK MATCHING GAME -->
+      <div class="card">
+        <div class="card-header">🎮 Trò Chơi Ghép Cặp 5 Phút</div>
+        <p>Ghép cặp nhanh chóng! Xem người mới 7 giây một lần. 🚀</p>
+        <div class="text-center" style="margin: 20px 0;">
+          <div style="font-size: 64px; margin: 20px 0;">⏱️</div>
+          <p style="font-size: 18px; font-weight: 700;">5:00 còn lại</p>
+          <p>Hiện đã ghép cặp với 3 người. Tăng tốc! 💨</p>
+        </div>
+        <div class="text-center">
+          <button class="btn" onclick="startQuickMatch()">🚀 Bắt Đầu Ghép Cặp 5 Phút</button>
+          <button class="btn secondary" onclick="stopQuickMatch()">⏹️ Dừng</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>💖 Cute Match © 2026 | <a href="#">Quyền Riêng Tư</a> | <a href="#">Điều Khoản</a> | <a href="#">Liên Hệ</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Sample user data for matching
+    const sampleUsers = [
+      { id: 1, name: 'Sarah', age: 24, avatar: '👸', city: 'TP. Hồ Chí Minh', interests: ['Du Lịch', 'Cà Phê', 'Âm Nhạc'], bio: 'Yêu khám phá những nơi mới và gặp gỡ con người mới!', compatibility: 87 },
+      { id: 2, name: 'Emma', age: 23, avatar: '💃', city: 'Sài Gòn', interests: ['Phim Ảnh', 'Nghệ Thuật', 'Nấu Ăn'], bio: 'Họa sĩ và người yêu ẩm thực!', compatibility: 78 },
+      { id: 3, name: 'Lisa', age: 25, avatar: '👯', city: 'TP. Hồ Chí Minh', interests: ['Thể Dục', 'Chơi Game', 'Âm Nhạc'], bio: 'Người đam mê gym và chơi game!', compatibility: 82 },
+      { id: 4, name: 'Jessica', age: 26, avatar: '🧑‍🦰', city: 'Hà Nội', interests: ['Du Lịch', 'Nhiếp Ảnh', 'Đọc Sách'], bio: 'Người tìm kiếm phiêu lưu!', compatibility: 75 },
+      { id: 5, name: 'Anna', age: 22, avatar: '👱‍♀️', city: 'TP. Hồ Chí Minh', interests: ['Yoga', 'Thiền', 'Tự Nhiên'], bio: 'Tìm kiếm sự cân bằng và hòa hợp!', compatibility: 80 },
+      { id: 6, name: 'Nicole', age: 27, avatar: '👩‍🎓', city: 'Đà Nẵng', interests: ['Sách', 'Cà Phê', 'Du Lịch'], bio: 'Giáo viên yêu thích tìm tòi!', compatibility: 85 }
+    ];
+
+    let currentMatchIndex = 0;
+    let activeMode = null;
+    let usedIds = new Set();
+
+    function getNextUnusedUser() {
+      const availableUsers = sampleUsers.filter(u => !usedIds.has(u.id));
+      if (availableUsers.length === 0) {
+        usedIds.clear();
+        return sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
+      }
+      const user = availableUsers[Math.floor(Math.random() * availableUsers.length)];
+      usedIds.add(user.id);
+      return user;
+    }
+
+    function startMatch(mode) {
+      activeMode = mode;
+      document.getElementById('filtersContainer').style.display = mode !== 'random' && mode !== 'voice' ? 'block' : 'none';
+      showRandomMatch();
+    }
+
+    function showRandomMatch() {
+      const user = getNextUnusedUser();
+      document.getElementById('matchContainer').style.display = 'block';
+      document.getElementById('matchAvatar').textContent = user.avatar;
+      document.getElementById('matchName').textContent = `${user.name}, ${user.age}`;
+      document.getElementById('matchMeta').textContent = '📍 ' + user.city;
+      document.getElementById('matchBio').textContent = `"${user.bio}"`;
+      document.getElementById('compatibilityScore').textContent = user.compatibility + '%';
+      document.getElementById('compatProgress').style.width = user.compatibility + '%';
+      
+      // Store current user in window for like/skip functions
+      window.currentMatchUser = user;
+      
+      document.getElementById('matchInterests').innerHTML = user.interests
+        .map((i, idx) => `<span class="tag ${['pink', 'purple', 'blue'][idx % 3]}">${i}</span>`)
+        .join('');
+    }
+
+    function likeMatch() {
+      if (!window.currentMatchUser) return;
+      const user = window.currentMatchUser;
+      
+      // Check if user is logged in
+      const currentUser = AuthManager.getCurrentUser();
+      if (!currentUser) {
+        showNotification('Vui lòng đăng nhập để thích người dùng', 'error');
+        window.location.href = 'account.html';
+        return;
+      }
+      
+      // Use MatchingSystem to save the like
+      MatchingSystem.likeUser(user.id, user.name);
+      
+      // Show next match
+      setTimeout(() => {
+        showRandomMatch();
+      }, 1500);
+    }
+
+    function skipMatch() {
+      if (window.currentMatchUser) {
+        MatchingSystem.skipUser(window.currentMatchUser.name);
+      }
+      showRandomMatch();
+    }
+
+    function viewProfile() {
+      if (window.currentMatchUser) {
+        const user = window.currentMatchUser;
+        showNotification(`${user.name}, ${user.age} từ ${user.city}`, 'info');
+      }
+    }
+
+    function applyFilters() {
+      const ageMin = document.getElementById('ageMin')?.value || 18;
+      const ageMax = document.getElementById('ageMax')?.value || 65;
+      const gender = document.querySelector('input[name="lookingfor"]:checked')?.value || 'both';
+      
+      // Save preferences
+      DataStore.savePreferences({
+        ageMin: parseInt(ageMin),
+        ageMax: parseInt(ageMax),
+        gender: gender
+      });
+      
+      showNotification('Tùy chọn đã được lưu! ✨', 'success');
+      showRandomMatch();
+    }
+
+    function startQuickMatch() {
+      const currentUser = AuthManager.getCurrentUser();
+      if (!currentUser) {
+        showNotification('Vui lòng đăng nhập để bắt đầu ghép cặp 5 phút', 'error');
+        return;
+      }
+      
+      showNotification('🚀 Ghép cặp 5 phút bắt đầu!', 'success');
+      window.quickMatchInterval = setInterval(showRandomMatch, 7000);
+    }
+
+    function stopQuickMatch() {
+      if (window.quickMatchInterval) {
+        clearInterval(window.quickMatchInterval);
+      }
+      showNotification('⏹️ Ghép cặp đã dừng', 'info');
+    }
+
+    // Load preferences on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const prefs = DataStore.getPreferences();
+      if (document.getElementById('ageMin')) {
+        document.getElementById('ageMin').value = prefs.ageMin;
+        document.getElementById('ageMinDisplay').textContent = prefs.ageMin;
+      }
+      if (document.getElementById('ageMax')) {
+        document.getElementById('ageMax').value = prefs.ageMax;
+        document.getElementById('ageMaxDisplay').textContent = prefs.ageMax;
+      }
+    });
+
+    // Range slider display
+    document.getElementById('ageMin')?.addEventListener('change', e => {
+      document.getElementById('ageMinDisplay').textContent = e.target.value;
+    });
+    document.getElementById('ageMax')?.addEventListener('change', e => {
+      document.getElementById('ageMaxDisplay').textContent = e.target.value;
+    });
+    document.getElementById('distance')?.addEventListener('change', e => {
+      document.getElementById('distanceDisplay').textContent = e.target.value;
+    });
+
+    // Show a match on page load
+    setTimeout(() => {
+      if (sampleUsers.length > 0) {
+        showRandomMatch();
+      }
+    }, 500);
+  </script>
+</body>
+</html>

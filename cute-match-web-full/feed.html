@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📝 Bảng Tin Confess - Cute Match</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <span class="logo">💘 Cute Match</span>
+    <nav>
+      <a href="index.html">🏠 Trang Chủ</a>
+      <a href="account.html">👤 Tài Khoản</a>
+      <a href="match.html">🔥 Hẹn Hò</a>
+      <a href="feed.html">📝 Bảng Tin</a>
+      <a href="chat.html">💬 Trò Chuyện</a>
+      <button id="darkModeToggle" class="theme-toggle">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- POST CREATION -->
+      <div class="card">
+        <div class="card-header">📝 Chia Sẻ Ý Nghĩ Của Bạn</div>
+        <form id="newPostForm">
+          <div class="form-group">
+            <label for="postContent">Bạn đang nghĩ gì? 💭</label>
+            <textarea id="postContent" placeholder="Chia sẻ một cảm nhận, suy nghĩ hoặc chỉ nói xin chào! (Hãy lịch sự 💕)" maxlength="500"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="postHashtags">Thêm Hashtags (cách nhau bằng dấu phẩy)</label>
+            <input type="text" id="postHashtags" placeholder="#Độc Thân #Crush #Suy Nghĩ Lúc Nửa Đêm">
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="anonymousPost"> 👻 Đăng ẩn danh
+            </label>
+          </div>
+          <button type="submit" class="btn full">Đăng Lên Bảng Tin</button>
+        </form>
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab-filter="all">📌 Tất Cả Bài Viết</button>
+        <button class="tab-btn" data-tab-filter="trending">🔥 Nổi Bật</button>
+        <button class="tab-btn" data-tab-filter="featured">⭐ Được Chọn (Admin)</button>
+        <button class="tab-btn" data-tab-filter="myfollowing">👥 Đang Theo Dõi</button>
+      </div>
+
+      <!-- POSTS FEED -->
+      <div id="feedContainer">
+        <!-- FEATURED POST -->
+        <div class="post" style="border: 2px solid var(--warning); background: linear-gradient(135deg, rgba(255, 217, 61, 0.1), rgba(255, 170, 77, 0.1));">
+          <div class="post-header">
+            <div class="post-avatar">👑</div>
+            <div class="post-info">
+              <div class="post-author">Lựa Chọn Của Admin 👑</div>
+              <div class="post-time">Được Chọn Hôm Nay</div>
+            </div>
+          </div>
+          <div class="post-content">
+            "Vừa ghép cặp với tình yêu của đời tôi thông qua Cute Match! Chúng tôi đã ở bên nhau được 3 tháng và tôi không thể hạnh phúc hơn. Nếu bạn đang tìm kiếm những kết nối thực sự, đây là nơi! 💖"
+          </div>
+          <div class="post-hashtags">
+            <span class="hashtag">#CâuChuyệnTình</span>
+            <span class="hashtag">#CuteMatchThànhCôngCông</span>
+            <span class="hashtag">#KếtNốiThực</span>
+          </div>
+          <div class="post-actions">
+            <div class="post-action">❤️ 1.2K Thích</div>
+            <div class="post-action">💬 234 Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        </div>
+
+        <!-- SAMPLE POSTS -->
+        <div class="post">
+          <div class="post-header">
+            <div class="post-avatar">💭</div>
+            <div class="post-info">
+              <div class="post-author">Người Dùng Ẩn Danh</div>
+              <div class="post-time">2 giờ trước</div>
+            </div>
+          </div>
+          <div class="post-content">
+            "Vừa chuyển đến thành phố và tìm kiếm những kết nối thật sự. Không phải tìm trò chơi! Hãy gặp nhau và có những cuộc trò chuyện thực sự 😊"
+          </div>
+          <div class="post-hashtags">
+            <span class="hashtag">#ĐộcThân</span>
+            <span class="hashtag">#MớiĐếnThànhPhố</span>
+            <span class="hashtag">#TìmBạn</span>
+          </div>
+          <div class="post-actions">
+            <div class="post-action">❤️ 234 Thích</div>
+            <div class="post-action">💬 12 Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <div class="post-avatar">🌙</div>
+            <div class="post-info">
+              <div class="post-author">Người Yêu Tư Duy Lúc Nửa Đêm</div>
+              <div class="post-time">5 giờ trước</div>
+            </div>
+          </div>
+          <div class="post-content">
+            "Đôi khi những cuộc trò chuyện hay nhất xảy ra vào lúc 2 giờ sáng. Tại sao lại vậy? Có gì đó kỳ diệu về những cuộc nói chuyện sâu vào giữa đêm. Ai khác cũng là người thức khuya? 🦉"
+          </div>
+          <div class="post-hashtags">
+            <span class="hashtag">#SuyNghĩLúcNửaĐêm</span>
+            <span class="hashtag">#Triết Học</span>
+            <span class="hashtag">#CuộcNóiChuyệnSâu</span>
+          </div>
+          <div class="post-actions">
+            <div class="post-action">❤️ 456 Thích</div>
+            <div class="post-action">💬 89 Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <div class="post-avatar">💔</div>
+            <div class="post-info">
+              <div class="post-author">Jane Bị Vỡ Lòng</div>
+              <div class="post-time">8 giờ trước</div>
+            </div>
+          </div>
+          <div class="post-content">
+            "Lời Thú Nhận: Tôi không thể ngừng nghĩ về crush của tôi. Hôm nay họ cười với tôi và tôi bị lợn đứng. Đây có phải là sự khởi đầu của một điều kỳ diệu không? 😍"
+          </div>
+          <div class="post-hashtags">
+            <span class="hashtag">#Crush</span>
+            <span class="hashtag">#LầnĐầuYêuThương</span>
+            <span class="hashtag">#Hy Vọng</span>
+          </div>
+          <div class="post-actions">
+            <div class="post-action">❤️ 678 Thích</div>
+            <div class="post-action">💬 156 Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <div class="post-avatar">🎵</div>
+            <div class="post-info">
+              <div class="post-author">Những Người Yêu Âm Nhạc Mike</div>
+              <div class="post-time">12 giờ trước</div>
+            </div>
+          </div>
+          <div class="post-content">
+            "Tìm ai đó để chia sẻ playlist với! Tôi thích nhạc indie rock, lo-fi beats và những thứ kinh điển từ những năm 80. Muốn cùng nhau nghe nhạc không? 🎧🎶"
+          </div>
+          <div class="post-hashtags">
+            <span class="hashtag">#ÂmNhạc</span>
+            <span class="hashtag">#IndieRock</span>
+            <span class="hashtag">#ChiaPlaylist</span>
+          </div>
+          <div class="post-actions">
+            <div class="post-action">❤️ 345 Thích</div>
+            <div class="post-action">💬 67 Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <div class="post-avatar">✈️</div>
+            <div class="post-info">
+              <div class="post-author">Sara Yêu Du Lịch</div>
+              <div class="post-time">1 ngày trước</div>
+            </div>
+          </div>
+          <div class="post-content">
+            "Ai muốn làm bạn du lịch cho Đông Nam Á? Tôi đang lên kế hoạch cho một chuyến đi 2 tuần và sẽ tuyệt vời nếu được khám phá cùng người vui tính! Hãy tạo kỷ niệm 🌍✨"
+          </div>
+          <div class="post-hashtags">
+            <span class="hashtag">#DuLịch</span>
+            <span class="hashtag">#PhiêuLưu</span>
+            <span class="hashtag">#BạnDuLịch</span>
+          </div>
+          <div class="post-actions">
+            <div class="post-action">❤️ 789 Thích</div>
+            <div class="post-action">💬 234 Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <div class="post-avatar">🎨</div>
+            <div class="post-info">
+              <div class="post-author">Alex Sáng Tạo</div>
+              <div class="post-time">1 ngày trước</div>
+            </div>
+          </div>
+          <div class="post-content">
+            "Vừa hoàn thành một tác phẩm nghệ thuật mới! Tôi rất muốn gặp ai đó đánh giá cao nghệ thuật và sáng tạo 🎨 Hẹn uống cà phê tại các phòng trưng bày? 😊"
+          </div>
+          <div class="post-hashtags">
+            <span class="hashtag">#Nghệ Thuật</span>
+            <span class="hashtag">#Sáng Tạo</span>
+            <span class="hashtag">#HẹnCàPhê</span>
+          </div>
+          <div class="post-actions">
+            <div class="post-action">❤️ 512 Thích</div>
+            <div class="post-action">💬 98 Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>💖 Cute Match © 2026 | <a href="#">Quyền Riêng Tư</a> | <a href="#">Điều Khoản</a> | <a href="#">Liên Hệ</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Load and display posts
+    function loadPosts() {
+      const posts = DataStore.getPosts();
+      const feedContainer = document.getElementById('feedContainer');
+      
+      if (!feedContainer) return;
+      
+      // Clear existing posts (except featured)
+      const postElements = feedContainer.querySelectorAll('.post:not(.featured)');
+      postElements.forEach(el => el.remove());
+      
+      // Display posts
+      posts.forEach(post => {
+        const postEl = document.createElement('div');
+        postEl.className = 'post';
+        postEl.innerHTML = `
+          <div class="post-header">
+            <div class="post-avatar">${post.avatar}</div>
+            <div class="post-info">
+              <div class="post-author">${post.author}</div>
+              <div class="post-time">${timeAgo(post.createdAt)}</div>
+            </div>
+          </div>
+          <div class="post-content">${post.content}</div>
+          <div class="post-actions">
+            <div class="post-action like-btn" onclick="likePost(this, ${post.id})">❤️ <span>${post.likes}</span> Thích</div>
+            <div class="post-action">💬 <span>0</span> Bình Luận</div>
+            <div class="post-action">👀 Chia Sẻ</div>
+          </div>
+        `;
+        feedContainer.appendChild(postEl);
+      });
+    }
+
+    function likePost(btn, postId) {
+      const posts = DataStore.getPosts();
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.likes = (post.likes || 0) + 1;
+        DataStore.savePosts(posts);
+        const likeSpan = btn.querySelector('span');
+        likeSpan.textContent = post.likes;
+        btn.style.color = 'var(--primary)';
+      }
+    }
+
+    // Form submission
+    document.getElementById('newPostForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      const user = AuthManager.getCurrentUser();
+      if (!user) {
+        showNotification('Vui lòng đăng nhập để tạo bài viết', 'error');
+        return;
+      }
+      
+      const content = document.getElementById('postContent').value;
+      const hashtags = document.getElementById('postHashtags').value;
+      const isAnonymous = document.getElementById('anonymousPost')?.checked;
+
+      if (!content.trim()) {
+        showNotification('Vui lòng viết điều gì đó! 💭', 'error');
+        return;
+      }
+
+      // Create post using DataStore
+      DataStore.addPost({
+        content: content,
+        author: isAnonymous ? 'Người Dùng Ẩn Danh' : user.username,
+        avatar: isAnonymous ? '👻' : user.avatar,
+        hashtags: hashtags.split(',').map(t => t.trim()).filter(t => t),
+        location: user.location
+      });
+
+      // Clear form
+      document.getElementById('newPostForm').reset();
+      showNotification('Bài viết đã chia sẻ! 🎉', 'success');
+      
+      // Reload posts
+      loadPosts();
+    });
+
+    // Tab filters
+    document.querySelectorAll('[data-tab-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-tab-filter]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.tabFilter;
+        
+        // Filter posts by type
+        const posts = DataStore.getPosts();
+        if (filter === 'all') {
+          loadPosts();
+        } else if (filter === 'featured') {
+          showNotification('Bộ lọc:' + filter, 'info');
+        }
+      });
+    });
+
+    // Initialize posts on page load
+    window.addEventListener('DOMContentLoaded', loadPosts);
+    window.loadPosts = loadPosts; // Make accessible from main.js
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💬 Trò Chuyện - Cute Match</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <span class="logo">💘 Cute Match</span>
+    <nav>
+      <a href="index.html">🏠 Trang Chủ</a>
+      <a href="account.html">👤 Tài Khoản</a>
+      <a href="match.html">🔥 Hẹn Hò</a>
+      <a href="feed.html">📝 Bảng Tin</a>
+      <a href="chat.html">💬 Trò Chuyện</a>
+      <button id="darkModeToggle" class="theme-toggle">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container" style="max-width: 900px;">
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; min-height: 80vh;">
+        
+        <!-- CONVERSATIONS LIST -->
+        <div style="background: var(--bg-secondary); border-radius: 15px; padding: 20px; box-shadow: var(--shadow); overflow-y: auto;">
+          <h2 style="font-size: 20px; margin-bottom: 20px;">💬 Trò Chuyện Của Bạn</h2>
+          <input type="text" placeholder="Tìm kiếm trò chuyện..." style="width: 100%; margin-bottom: 15px; padding: 10px; border-radius: 10px; border: 2px solid var(--border-color);">
+          
+          <div class="conversation-list">
+            <!-- CONVERSATION ITEM -->
+            <div class="conversation-item" onclick="selectChat('sarah')" style="padding: 12px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; background: var(--light-pink); border: 2px solid transparent;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 24px;">👸</div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; color: var(--primary);">Sarah ❤️</div>
+                  <div style="font-size: 12px; color: var(--text-light);">Tin nhắn cuối: Hôm qua thật tuyệt! 😊</div>
+                </div>
+                <div style="font-size: 12px; color: var(--text-light);">2h trước</div>
+              </div>
+            </div>
+
+            <!-- CONVERSATION ITEM -->
+            <div class="conversation-item" onclick="selectChat('emma')" style="padding: 12px; border-radius: 10px; margin-bottom: 10px; cursor: pointer;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 24px;">💃</div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; color: var(--primary);">Emma</div>
+                  <div style="font-size: 12px; color: var(--text-light);">Nghe tốt! Khi nào?</div>
+                </div>
+                <div style="font-size: 12px; color: var(--text-light);">5h trước</div>
+              </div>
+            </div>
+
+            <!-- CONVERSATION ITEM -->
+            <div class="conversation-item" onclick="selectChat('lisa')" style="padding: 12px; border-radius: 10px; margin-bottom: 10px; cursor: pointer;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 24px;">👯</div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; color: var(--primary);">Lisa</div>
+                  <div style="font-size: 12px; color: var(--text-light);">Tôi yêu thích điều đó! 🎵</div>
+                </div>
+                <div style="font-size: 12px; color: var(--text-light);">1 ngày trước</div>
+              </div>
+            </div>
+
+            <!-- CONVERSATION ITEM -->
+            <div class="conversation-item" onclick="selectChat('jessica')" style="padding: 12px; border-radius: 10px; margin-bottom: 10px; cursor: pointer;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 24px;">👱‍♀️</div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; color: var(--primary);">Jessica</div>
+                  <div style="font-size: 12px; color: var(--text-light);">Cảm ơn gợi ý! ❤️</div>
+                </div>
+                <div style="font-size: 12px; color: var(--text-light);">3 ngày trước</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAT WINDOW -->
+        <div style="display: flex; flex-direction: column; background: var(--bg-secondary); border-radius: 15px; box-shadow: var(--shadow);">
+          <!-- CHAT HEADER -->
+          <div style="padding: 20px; border-bottom: 2px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+            <div id="chatHeader">
+              <h2 style="margin: 0; font-size: 20px;">Chọn một trò chuyện</h2>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button style="background: var(--info); border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer;">ℹ️ Thông Tin</button>
+              <button style="background: var(--danger); border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer;">🚫 Chặn</button>
+            </div>
+          </div>
+
+          <!-- MESSAGES -->
+          <div id="chatBox" class="chat-box" style="flex: 1; scroll-behavior: smooth;">
+            <div style="text-align: center; color: var(--text-light); padding: 40px 20px;">
+              💬 Chọn một trò chuyện để bắt đầu nhắn tin!
+            </div>
+          </div>
+
+          <!-- MESSAGE INPUT -->
+          <div style="padding: 20px;">
+            <div class="chat-input-area">
+              <input type="text" id="msg" placeholder="Nhập tin nhắn... 💕" autocomplete="off">
+              <button onclick="send()" class="btn">Gửi</button>
+            </div>
+            <div style="margin-top: 10px; display: flex; gap: 10px;">
+              <button class="btn small" style="background: var(--info);">🖼️ Hình Ảnh</button>
+              <button class="btn small" style="background: var(--success);">🎵 Giọng Nói</button>
+              <button class="btn small" style="background: var(--warning);">😊 Biểu Tượng</button>
+              <button class="btn small" style="background: var(--secondary);">❤️ Gửi Trái Tim</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>💖 Cute Match © 2026 | <a href="#">Quyền Riêng Tư</a> | <a href="#">Điều Khoản</a> | <a href="#">Liên Hệ</a></p>
+  </footer>
+
+  <script src="js/chat.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
